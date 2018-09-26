@@ -1,0 +1,23 @@
+<html>
+<head>
+<script type="text/javascript" src="java.js">
+
+</script>
+</head>
+<body>
+
+<h3>Enter Loan Information</h3><br>
+<form name="f1" >
+1)Amount of the loan(any currency):<input type="number" required id="loan"><div id="error1"></div>
+<br>2)Annual percentage rate of interest:<input type="text" required id="rate"><br>
+3)Repayment period in years:<input type="number" required id="period"><br><div id="error"></div>
+<input type="submit" value="Compute" onclick="compute(); return false;"><br>
+<h3>Payment Information</h3><br>
+4)Your monthly payment will be:<input type="text"  id="pay" readonly><br>
+5)Your total payment will be:<input type="text"  id="totalpay" readonly><br>
+6)Your total interest payments will be:<input type="number"  id="totalinterestpay" readonly>
+
+</form>
+
+</body>
+</html>
