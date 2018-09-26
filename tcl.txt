@@ -1,0 +1,5 @@
+1)insert into cust_table values(&cid,'&cname','&addr1','&addr2','&gen',&age,&pno);
+
+2)savepoint sp1;
+
+3)rollback to sp1;

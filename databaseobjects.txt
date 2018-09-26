@@ -1,0 +1,146 @@
+1)create table customer(customerid number(5),
+cust_name varchar2(20),address1 varchar2(30),
+address2 varchar2(30));
+
+2)alter table customer rename column cust_name to customername ;
+alter table customer modify(customername varchar2(30));
+alter table customer modify(customername not null);
+
+3)alter table customer 
+add(gender varchar2(1),age number(3),phoneno number(10));
+rename customer to cust_table;
+
+4)insert into cust_table values (1000,'Allen', '#115 Chicago', '#115 Chicago', 'M', 25, 7878776);
+insert into cust_table values (1001, 'George', '#116 France', '#116 France', 'M', 25, 434524);
+insert into cust_table values (1002, 'Becker', '#114 New York',' #114 New York', 'M', 45, 431525);
+  
+5)alter table customer add constraint custid_prim primary key(customerid);
+
+6)insert into cust_table values (1002,' John', '#114 Chicago', '#114 Chicago','M', 45, 439525);
+ **message unique constraint (HR.CUSTID_PRIM) violated
+
+7) alter table cust_table drop constraint custid_prim;
+insert into cust_table values (1003, 'Nanapatekar', '#115 India', '#115 India' , 'M', 45, 431525);
+insert into cust_table values (1002, 'Becker', '#114 New York',' #114 New York', 'M', 45, 431525);
+
+8)alter table customer add constraint custid_prim primary key(customerid);
+**cannot validate (HR.CUSTID_PRIM) - primary key violated
+
+9)alter table cust_table drop constraint custid_prim;
+**Cannot drop constraint  - nonexistent constraint
+
+10)truncate table cust_table;
+
+11)alter table cust_table add e_mail varchar2(50);
+
+12)alter table cust_table drop column e_mail;
+ 
+13)create table suppliers as 
+select customerid,customername,address1,address2,phoneno 
+from cust_table;
+alter table suppliers rename column customerid to suppid;
+alter table suppliers rename column customername to sname;
+alter table suppliers rename column address1 to addr1;
+alter table suppliers rename column address2 to addr2;
+alter table suppliers rename column phoneno to contactno;
+
+
+
+14)drop table suppliers;
+create table customermaster as
+select * from cust_table;
+alter table customermaster add constraint 
+custid_pk primary key(customerid);
+alter table customermaster modify(customerid not null,address1 not null); 
+
+15)create table accountmaster(customerid number(5),
+accountnumber number(10,2),accounttype char(3),
+ledgerbalance number(10,2) not null);
+
+create sequence accountnumber
+minvalue 111111111
+start with 111111111
+increment by 1
+cache 10;
+
+16)alter table accountmaster add constraint cust_acc 
+foreign key(customerid) references customermaster(customerid);
+
+17)insert into customermaster values(1000, 'Allen', '#115 Chicago', '#115 Chicago', 'M', 25, 7878776);
+ insert into customermaster values(1001, 'George', '#116 France', '#116 France', 'M', 25, 434524);
+insert into customermaster values(1002, 'Becker', '#114 New York', '#114 New York', 'M', 45, 431525);
+
+18)alter table accountmaster
+add check (accounttype='NRI' or accounttype='IND');
+
+19)alter table accountmaster 
+add constraint balance_check check(ledgerbalance>=5000);
+
+20)alter table accountmaster drop constraint cust_acc;
+alter table accountmaster add constraint cust_acc 
+foreign key(customerid) references customermaster(customerid)
+on delete cascade;
+
+21)create table accountdetails as
+select * from accountmaster;
+
+22)create view acc_view as
+select customerid as customercode,customername,accountnumber,
+accounttype,ledgerbalance 
+from customermaster natural join accountmaster;
+
+23)create view vacc_dtls as
+select * from accountmaster 
+where accounttype='IND' and ledgerbalance>=10000;
+
+24)
+
+25)create sequence seq_dept 
+start with 40
+maxvalue 200
+increment by 10;
+
+26)insert into department_master values(seq_dept.nextval,'Electronics');
+insert into department_master values(seq_dept.nextval,'marketing');
+insert into department_master values(seq_dept.nextval,'computers');
+
+27)drop sequence seq_dept;
+
+28)create index no_name on cust_table(customerid);
+select * from cust_table;
+
+29)create synonym synemp for synEmp.emp;
+
+30)select * from synemp.emp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
