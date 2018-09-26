@@ -1,23 +1,25 @@
-public class DecimalBinaryPalindrome {
+public class LcmHcf {
 	public static void main(String[] args) {
-		int num=121,temp1,temp2,val=0,remainder,i=1;
-		long binaryNumber=0;
-		temp1=num;
-		while(temp1>0){
-			remainder = temp1 % 2;
-			binaryNumber +=  remainder*i;
-			i*=10;
-			temp1 /= 2;     
-		}
-		System.out.println(num+" in Decimal System is "+binaryNumber+" in Binary System");
-		temp2=num;
-		while(temp2>0){
-			val=val*10+temp2%10;
-			temp2=temp2/10;
-		}
-		if(val==num)
-			System.out.println(num+" is a Palindrome");
+		int i,j,a=2,b=4;
+		if(a>b)
+			i=a;
 		else
-			System.out.println(num+" is not a Palindrome");
+			i=b;
+		for(j=i;;j++){
+			if(j%a==0 && j%b==0){
+				System.out.println("LCM of "+a+" and "+b+" is "+j);
+				break;
+			}
+		}
+		if(a<b)
+			i=a;
+		else
+			i=b;
+		for(j=i;j>0;j--){
+			if(a%j==0 && b%j==0){
+				System.out.println("HCF of "+a+" and "+b+" is "+j);
+				break;
+			}
+		}
 	}
 }
