@@ -1,12 +1,7 @@
-import java.util.*;
 public class DecimalBinaryPalindrome {
-	private static Scanner p;
 	public static void main(String[] args) {
-		int num,temp1,temp2,val=0,remainder,i=1;
+		int num=121,temp1,temp2,val=0,remainder,i=1;
 		long binaryNumber=0;
-		p = new Scanner(System.in);
-		System.out.println("Enter the number: ");
-		num = p.nextInt();
 		temp1=num;
 		while(temp1>0){
 			remainder = temp1 % 2;
